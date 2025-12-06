@@ -567,16 +567,40 @@
                     specialInstructions: document.getElementById('specialInstructions').value
                 };
 
-                // Construir direcciones completas
-                const pickupAddress = `${formData.pickupStreet}, ${formData.pickupCity}, NY ${formData.pickupZip}`;
-                const destinationAddress = `${formData.destinationStreet}, ${formData.destinationCity}, NY ${formData.destinationZip}`;
-
-                // Llamar a la función de Netlify
-                let distance = 'N/A';
-                let duration = 'N/A';
-
-                try {
+                             try {
+                    console.log('Calling Netlify function...');
+                    console.log('Origin:', pickupAddress);
+                    console.log('Destination:', destinationAddress);
+                    
                     const response = await fetch('/.netlify/functions/calculate-distance', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            origin: pickupAddress,
+                            destination: destinationAddress
+                        })
+                    });
+
+                    console.log('Response status:', response.status);
+                    
+                    if (response.ok) {
+                        const result = await response.json();
+                        console.log('Result:', result);
+                        if (result.success) {
+                            distance = result.distance;
+                            duration = result.duration;
+                            console.log('Distance:', distance, 'Duration:', duration);
+                        }
+                    } else {
+                        const errorText = await response.text();
+                        console.error('Error response:', errorText);
+                    }
+                } catch (error) {
+                    console.error('Distance calculation error:', error);
+                }
+
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
