@@ -1,6 +1,7 @@
 const https = require('https');
 
-const GOOGLE_MAPS_API_KEY = 'AIzaSyDWxOhWt1lSkGDjyHmr0omVFMdWp7myzw';
+const GOOGLE_MAPS_API_KEY = 'AIzaSyDWxOhWt-LISkGDiyHmr0omVFMdWp7myzw';
+
 
 exports.handler = async (event, context) => {
     if (event.httpMethod !== 'POST') {
