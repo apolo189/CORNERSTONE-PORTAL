@@ -605,20 +605,19 @@
                               // Enviar datos a Google Sheets
                 try {
                     const sheetsData = {
-                        passengerName: passengerName,
-                        passengerPhone: passengerPhone,
-                        clientNumber: clientNumber || '',
-                        rideDate: rideDate,
-                        pickupTime: pickupTime,
-                        appointmentTime: appointmentTime || '',
-                        serviceType: serviceType,
-                        pickupAddress: pickupAddress,
+                        passengerName: formData.passengerName,
+passengerPhone: formData.passengerPhone,
+clientNumber: formData.clientNumber || '',
+rideDate: formData.rideDate,
+pickupTime: formData.pickupTime,
+appointmentTime: formData.appointmentTime || '',
+serviceType: formData.serviceType,                        pickupAddress: pickupAddress,
                         destinationAddress: destinationAddress,
-                        destinationName: destinationName,
+                        destinationName: formData.destinationName,
                         distance: distance,
                         duration: duration,
-                        specialInstructions: specialInstructions,
-                        submittedBy: submittedBy
+                        specialInstructions: formData.specialInstructions,
+                        submittedBy: formData.submittedBy
                     };
                     
                     const sheetsResponse = await fetch('https://script.google.com/macros/s/AKfycbznMGFUOVP1OptAJUmIXqHZHZRdjEPinUcEvsrCWC4byhnBXEx6J4ZMz89AzlhjK_BgIA/exec', {
