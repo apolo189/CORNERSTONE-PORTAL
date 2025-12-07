@@ -602,6 +602,39 @@
                 // Mostrar resultado
                 displayResult(formData, pickupAddress, destinationAddress, distance, duration);
 
+                               // Enviar datos a Google Sheets
+                try {
+                    const sheetsResponse = await fetch('https://script.google.com/macros/s/AKfycbznMGFUOVP1OptAJUmIXqHZHZRdjEPinUcEvsrCWC4byhnBXEx6J4ZMz89AzlhjK_BgIA/exec', {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            passengerName: passengerName,
+                            passengerPhone: passengerPhone,
+                            clientNumber: clientNumber,
+                            rideDate: rideDate,
+                            pickupTime: pickupTime,
+                            appointmentTime: appointmentTime,
+                            tripType: tripType,
+                            returnTime: returnTime,
+                            serviceType: serviceType,
+                            pickupAddress: pickupAddress,
+                            destinationAddress: destinationAddress,
+                            destinationName: destinationName,
+                            distance: distance,
+                            duration: duration,
+                            specialInstructions: specialInstructions,
+                            submittedBy: submittedBy
+                        })
+                    });
+                    console.log('Datos enviados a Google Sheets');
+                } catch (error) {
+                    console.error('Error al enviar a Google Sheets:', error);
+                }
+
+
                 // Generar mensaje de WhatsApp
                 generateWhatsAppLink(formData, pickupAddress, destinationAddress, distance, duration);
 
