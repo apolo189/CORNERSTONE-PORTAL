@@ -588,7 +588,7 @@
                     });
 
                     if (response.ok) {
-                        const result = await response.json();
+                                     const result = await response.json();
                         distance = result.distance;
                         duration = result.duration;
                     }
@@ -602,16 +602,20 @@
                 // Mostrar resultado
                 displayResult(formData, pickupAddress, destinationAddress, distance, duration);
 
-                              // Enviar datos a Google Sheets
+                 // Enviar datos a Google Sheets
                 try {
-                    const sheetsData = {
+                                      const sheetsData = {
                         passengerName: formData.passengerName,
-passengerPhone: formData.passengerPhone,
-clientNumber: formData.clientNumber || '',
-rideDate: formData.rideDate,
-pickupTime: formData.pickupTime,
-appointmentTime: formData.appointmentTime || '',
-serviceType: formData.serviceType,                        pickupAddress: pickupAddress,
+                        passengerPhone: formData.passengerPhone,
+                        clientNumber: formData.clientNumber || '',
+                        rideDate: formData.rideDate,
+                        pickupTime: formData.pickupTime,
+                        appointmentTime: formData.appointmentTime || '',
+                        tripType: formData.tripType || '',
+                        frequency: formData.frequency || '',
+                        returnTime: formData.returnTime || '',
+                        serviceType: formData.serviceType,
+                        pickupAddress: pickupAddress,
                         destinationAddress: destinationAddress,
                         destinationName: formData.destinationName,
                         distance: distance,
@@ -619,6 +623,7 @@ serviceType: formData.serviceType,                        pickupAddress: pickupA
                         specialInstructions: formData.specialInstructions,
                         submittedBy: formData.submittedBy
                     };
+
                     
                     const sheetsResponse = await fetch('https://script.google.com/macros/s/AKfycbznMGFUOVP1OptAJUmIXqHZHZRdjEPinUcEvsrCWC4byhnBXEx6J4ZMz89AzlhjK_BgIA/exec', {
                         method: 'POST',
