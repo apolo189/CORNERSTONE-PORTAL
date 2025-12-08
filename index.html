@@ -371,12 +371,19 @@
                     </div>
                 </div>
 
-                <div class="form-row" id="returnTimeRow" style="display: none;">
+                               <div class="form-row" id="returnTimeRow" style="display: none;">
                     <div class="form-group">
                         <label for="returnTime">Return Pick-up Time</label>
                         <input type="time" id="returnTime">
                     </div>
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" id="willCallCheckbox" style="width: auto; height: 20px;">
+                            <span style="font-weight: 600; color: #2c5282;">Will Call (Patient will call when ready)</span>
+                        </label>
+                    </div>
                 </div>
+
 
                 <!-- PICK UP ADDRESS -->
                 <div class="section-title">📍 PICK-UP ADDRESS</div>
@@ -504,12 +511,29 @@
         // Configuración
         const WHATSAPP_NUMBER = '19144201510';
 
-        // Mostrar/ocultar return time
+              // Mostrar/ocultar return time
         document.querySelectorAll('input[name="tripType"]').forEach(radio => {
             radio.addEventListener('change', function() {
                 document.getElementById('returnTimeRow').style.display = 
                     this.value === 'Round Trip' ? 'grid' : 'none';
             });
+        });
+
+        // Will Call checkbox functionality
+        const willCallCheckbox = document.getElementById('willCallCheckbox');
+        const returnTimeInput = document.getElementById('returnTime');
+        
+        willCallCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                returnTimeInput.value = '';
+                returnTimeInput.disabled = true;
+                returnTimeInput.style.backgroundColor = '#f0f0f0';
+            } else {
+                returnTimeInput.disabled = false;
+                returnTimeInput.style.backgroundColor = 'white';
+            }
+        });
+
         });
 
         // Fecha por defecto (hoy)
@@ -545,7 +569,8 @@
                     appointmentTime: document.getElementById('appointmentTime').value,
                     tripType: document.querySelector('input[name="tripType"]:checked').value,
                     frequency: document.querySelector('input[name="frequency"]:checked').value,
-                    returnTime: document.getElementById('returnTime').value,
+                                        returnTime: document.getElementById('willCallCheckbox').checked ? 'WILL CALL' : document.getElementById('returnTime').value,
+
                     
                     // Pickup Address
                     pickupStreet: document.getElementById('pickupStreet').value,
@@ -640,8 +665,12 @@
                 
 
 
-                // Generar mensaje de WhatsApp
-                generateWhatsAppLink(formData, pickupAddress, destinationAddress, distance, duration);
+                             const whatsappUrl = generateWhatsAppLink(formData, pickupAddress, destinationAddress, distance, duration);
+                
+                // Abrir WhatsApp automáticamente después de 1 segundo
+                setTimeout(function() {
+                    window.open(whatsappUrl, '_blank');
+                }, 1000);
 
             } catch (error) {
                 document.getElementById('loadingModal').style.display = 'none';
@@ -724,10 +753,14 @@
             message += `Solicitado por: ${data.submittedBy}\n`;
             message += `Fecha solicitud: ${data.requestDate}`;
 
-            const encodedMessage = encodeURIComponent(message);
+                       const encodedMessage = encodeURIComponent(message);
             const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
             
             document.getElementById('whatsappBtn').href = whatsappLink;
+            
+            return whatsappLink;
+        }
+
         }
     </script>
 </body>
