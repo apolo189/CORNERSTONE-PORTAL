@@ -529,12 +529,11 @@
                 returnTimeInput.disabled = true;
                 returnTimeInput.style.backgroundColor = '#f0f0f0';
             } else {
-                returnTimeInput.disabled = false;
-                returnTimeInput.style.backgroundColor = 'white';
-            }
+              returnTimeInput.disabled = false;
+            returnTimeInput.style.backgroundColor = 'white';
+         }
         });
 
-        });
 
         // Fecha por defecto (hoy)
         const today = new Date().toISOString().split('T')[0];
