@@ -8,7 +8,7 @@
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;AF
+            box-sizing: border-box;
         }
 
         body {
@@ -194,21 +194,40 @@
             margin: 20px 0;
         }
 
-        .whatsapp-btn {
-            background: #25D366;
-            color: white;
-            padding: 15px 40px;
-            border-radius: 10px;
-            text-decoration: none;
-            display: inline-block;
-            font-weight: 600;
-            margin-top: 20px;
-            transition: transform 0.2s;
+        .close-btn {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
         }
 
-        .whatsapp-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        .close-btn:hover {
+            color: #000;
+        }
+
+        .result-card {
+            position: relative;
+        }
+
+        .result-section {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .result-section h3 {
+            color: #2c5282;
+            margin-bottom: 10px;
+        }
+
+        .result-section p {
+            margin: 5px 0;
+            color: #2d3748;
         }
 
         .error-message {
@@ -252,7 +271,7 @@
                 </div>
                 <div class="form-group">
                     <label for="requestDate">Date</label>
-                   
+                    <input type="date" id="requestDate">
                 </div>
             </div>
 
@@ -331,104 +350,97 @@
                     </label>
                 </div>
             </div>
+
             <!-- Pick-up Address -->
-            <div class="form-section">
-                <h2>📍 Pick-up Address</h2>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="pickupStreet">Pickup Street Address *</label>
-                        <input type="text" id="pickupStreet" required placeholder="123 Main St">
-                    </div>
-                    <div class="form-group">
-                        <label for="pickupCity">City *</label>
-                        <input type="text" id="pickupCity" required placeholder="New Rochelle">
-                    </div>
+            <div class="section-title">📍 Pick-up Address</div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="pickupStreet" class="required">Pickup Street Address</label>
+                    <input type="text" id="pickupStreet" required placeholder="123 Main St">
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="pickupCounty">County *</label>
-                        <input type="text" id="pickupCounty" required placeholder="Westchester">
-                    </div>
-                    <div class="form-group">
-                        <label for="pickupZip">Zip Code *</label>
-                        <input type="text" id="pickupZip" required pattern="\d{5}" placeholder="10801">
-                    </div>
+                <div class="form-group">
+                    <label for="pickupCity" class="required">City</label>
+                    <input type="text" id="pickupCity" required placeholder="New Rochelle">
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="pickupApt">Apt/Suite/Building</label>
-                        <input type="text" id="pickupApt" placeholder="Apt 2B">
-                    </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="pickupCounty" class="required">County</label>
+                    <input type="text" id="pickupCounty" required placeholder="Westchester">
+                </div>
+                <div class="form-group">
+                    <label for="pickupZip" class="required">Zip Code</label>
+                    <input type="text" id="pickupZip" required pattern="\d{5}" placeholder="10801">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="pickupApt">Apt/Suite/Building</label>
+                    <input type="text" id="pickupApt" placeholder="Apt 2B">
                 </div>
             </div>
 
             <!-- Destination -->
-            <div class="form-section">
-                <h2>🏥 Destination</h2>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="destinationName">Destination Name *</label>
-                        <input type="text" id="destinationName" required placeholder="White Plains Hospital">
-                    </div>
-                    <div class="form-group">
-                        <label for="destinationApt">Suite/Floor/Department</label>
-                        <input type="text" id="destinationApt" placeholder="Suite 305">
-                    </div>
+            <div class="section-title">🏥 Destination</div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="destinationName" class="required">Destination Name</label>
+                    <input type="text" id="destinationName" required placeholder="White Plains Hospital">
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="destinationStreet">Destination Street Address *</label>
-                        <input type="text" id="destinationStreet" required placeholder="41 East Post Rd">
-                    </div>
-                    <div class="form-group">
-                        <label for="destinationCity">City *</label>
-                        <input type="text" id="destinationCity" required placeholder="White Plains">
-                    </div>
+                <div class="form-group">
+                    <label for="destinationApt">Suite/Floor/Department</label>
+                    <input type="text" id="destinationApt" placeholder="Suite 305">
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="destinationCounty">County *</label>
-                        <input type="text" id="destinationCounty" required placeholder="Westchester">
-                    </div>
-                    <div class="form-group">
-                        <label for="destinationZip">Zip Code *</label>
-                        <input type="text" id="destinationZip" required pattern="\d{5}" placeholder="10601">
-                    </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="destinationStreet" class="required">Destination Street Address</label>
+                    <input type="text" id="destinationStreet" required placeholder="41 East Post Rd">
+                </div>
+                <div class="form-group">
+                    <label for="destinationCity" class="required">City</label>
+                    <input type="text" id="destinationCity" required placeholder="White Plains">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="destinationCounty" class="required">County</label>
+                    <input type="text" id="destinationCounty" required placeholder="Westchester">
+                </div>
+                <div class="form-group">
+                    <label for="destinationZip" class="required">Zip Code</label>
+                    <input type="text" id="destinationZip" required pattern="\d{5}" placeholder="10601">
                 </div>
             </div>
 
             <!-- Type of Transportation -->
-            <div class="form-section">
-                <h2>🚑 Type of Transportation</h2>
-                <div class="form-row">
-                    <div class="form-group full-width">
-                        <label>Service Type *</label>
-                        <div class="radio-group">
-                            <label class="radio-label">
-                                <input type="radio" name="serviceType" value="Wheelchair" required>
-                                <span>♿ Wheelchair</span>
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="serviceType" value="Stretcher">
-                                <span>🛏️ Stretcher</span>
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="serviceType" value="Ambulatory">
-                                <span>🚶 Ambulatory</span>
-                            </label>
-                        </div>
+            <div class="section-title">🚑 Type of Transportation</div>
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label class="required">Service Type</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="serviceType" value="Wheelchair" required>
+                            <span>♿ Wheelchair</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="serviceType" value="Stretcher">
+                            <span>🛏️ Stretcher</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="serviceType" value="Ambulatory">
+                            <span>🚶 Ambulatory</span>
+                        </label>
                     </div>
                 </div>
             </div>
 
             <!-- Special Needs -->
-            <div class="form-section">
-                <h2>📝 Special Needs / Instructions</h2>
-                <div class="form-row">
-                    <div class="form-group full-width">
-                        <label for="specialInstructions">Any special requirements, medical equipment, mobility aids, or important information...</label>
-                        <textarea id="specialInstructions" rows="4" placeholder="e.g., Patient uses oxygen tank, needs assistance with stairs, has service animal, etc."></textarea>
-                    </div>
+            <div class="section-title">📝 Special Needs / Instructions</div>
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label for="specialInstructions">Any special requirements, medical equipment, mobility aids, or important information...</label>
+                    <textarea id="specialInstructions" rows="4" placeholder="e.g., Patient uses oxygen tank, needs assistance with stairs, has service animal, etc."></textarea>
                 </div>
             </div>
 
@@ -438,7 +450,7 @@
         <!-- Loading Modal -->
         <div id="loadingModal" class="modal">
             <div class="modal-content">
-                <div class="loader"></div>
+                <div class="spinner"></div>
                 <p id="loadingMessage">Processing request...</p>
             </div>
         </div>
@@ -449,16 +461,15 @@
                 <span class="close-btn" onclick="closeResultModal()">&times;</span>
                 <h2>✅ Request Submitted Successfully</h2>
                 <div id="resultContent"></div>
-                <a id="whatsappBtn" class="whatsapp-btn" target="_blank">
-                    📱 SEND VIA WHATSAPP
-                </a>
+                <p style="margin-top: 20px; color: #2c5282; font-weight: 600;">
+                    📧 Email notification sent to <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="79130c18171a14160b1e181d164d49391e14181015571a1614">[email&#160;protected]</a>
+                </p>
             </div>
         </div>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         const NETLIFY_FUNCTION = '/.netlify/functions/calculateDistance';
-        const WHATSAPP_NUMBER = '19144201510';
 
         // Mostrar/ocultar return time
         document.querySelectorAll('input[name="tripType"]').forEach(radio => {
@@ -603,17 +614,9 @@
                     console.error('Error al enviar a Google Sheets:', error);
                 }
 
-                // Generar WhatsApp link
-                const whatsappUrl = generateWhatsAppLink(formData, pickupAddress, destinationAddress, distance, duration);
-
                 // Mostrar resultado
                 hideLoading();
                 showResult(formData, pickupAddress, destinationAddress, distance, duration);
-
-                // ABRIR WHATSAPP AUTOMÁTICAMENTE después de 1 segundo
-                setTimeout(function() {
-                    window.open(whatsappUrl, '_blank');
-                }, 1000);
 
             } catch (error) {
                 hideLoading();
@@ -623,52 +626,676 @@
             }
         });
 
-        function generateWhatsAppLink(data, pickup, destination, distance, duration) {
-            let message = `🚨 *SOLICITUD TRANSPORTE - Cornerstone*\n\n`;
-            message += `👤 *PACIENTE*\n`;
-            message += `Nombre: ${data.passengerName}\n`;
-            message += `Tel: ${data.passengerPhone}\n`;
-            if (data.clientNumber) message += `Cliente #: ${data.clientNumber}\n`;
+        function showResult(data, pickup, destination, distance, duration) {
+            const resultContent = `
+                <div class="result-section">
+                    <h3>👤 Passenger</h3>
+                    <p><strong>${data.passengerName}</strong> - ${data.passengerPhone}</p>
+                    ${data.clientNumber ? `<p>Client #: ${data.clientNumber}</p>` : ''}
+                </div>
+                
+                <div class="result-section">
+                    <h3>📅 Ride Information</h3>
+                    <p><strong>Date:</strong> ${data.rideDate}</p>
+                    <p><strong>Pick-up Time:</strong> ${data.pickupTime}</p>
+                    ${data.appointmentTime ? `<p><strong>Appointment:</strong> ${data.appointmentTime}</p>` : ''}
+                    <p><strong>Trip Type:</strong> ${data.tripType}</p>
+                    <p><strong>Frequency:</strong> ${data.frequency}</p>
+                    ${data.tripType === 'Round Trip' && data.returnTime ? `<p><strong>Return Time:</strong> ${data.returnTime}</p>` : ''}
+                    <p><strong>Service:</strong> ${data.serviceType}</p>
+                </div>
+                
+                <div class="result-section">
+                    <h3>📍 Route</h3>
+                    <p><strong>From:</strong> ${pickup}</p>
+                    <p><strong>To:</strong> ${data.destinationName}, ${destination}</p>
+                    <p><strong>Distance:</strong> ${distance}</p>
+                    <p><strong>Duration:</strong> ${duration}</p>
+                </div>
+                
+                ${data.specialInstructions ? `
+                <div class="result-section">
+                    <h3>📝 Special Instructions</h3>
+                    <p>${data.specialInstructions}</p>
+                </div>` : ''}
+            `;
             
-            message += `\n📅 *DETALLES DEL VIAJE*\n`;
-            message += `Fecha: ${data.rideDate}\n`;
-            message += `Hora Pick-up: ${data.pickupTime}\n`;
-            if (data.appointmentTime) message += `Hora Cita: ${data.appointmentTime}\n`;
-            message += `Tipo: ${data.tripType}\n`;
-            if (data.tripType === 'Round Trip' && data.returnTime) {
-                message += `Retorno: ${data.returnTime}\n`;
-            }
-            
-            message += `\n🚑 *TIPO DE SERVICIO*\n`;
-            message += `${data.serviceType}\n`;
-            
-            message += `\n📍 *PICK-UP*\n`;
-            message += `${pickup}\n`;
-            if (data.pickupApt) message += `${data.pickupApt}\n`;
-            
-            message += `\n🏥 *DESTINO*\n`;
-            message += `${data.destinationName}\n`;
-            if (data.destinationApt) message += `${data.destinationApt}\n`;
-            message += `${destination}\n`;
-            
-            message += `\n🗺️ *RUTA*\n`;
-            message += `Distancia: ${distance}\n`;
-            message += `Tiempo estimado: ${duration}\n`;
-            
-            if (data.specialInstructions) {
-                message += `\n📝 *INSTRUCCIONES ESPECIALES*\n`;
-                message += `${data.specialInstructions}\n`;
-            }
-            
-            message += `\n✅ Solicitado por: ${data.submittedBy}`;
-            
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-            
-            document.getElementById('whatsappBtn').href = whatsappLink;
-            
-            return whatsappLink;
+            document.getElementById('resultContent').innerHTML = resultContent;
+            document.getElementById('resultModal').style.display = 'flex';
         }
+
+        function showLoading(message) {
+            document.getElementById('loadingMessage').textContent = message;
+            document.getElementById('loadingModal').style.display = 'flex';
+        }
+
+        function hideLoading() {<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cornerstone Transport Request Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .header h1 {
+            color: #2c5282;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #718096;
+            font-size: 1.1em;
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin: 30px 0 20px 0;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            color: #2d3748;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        label.required::after {
+            content: " *";
+            color: #e53e3e;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="time"],
+        textarea {
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 30px;
+            transition: transform 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .result-info {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: #000;
+        }
+
+        .result-card {
+            position: relative;
+        }
+
+        .result-section {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .result-section h3 {
+            color: #2c5282;
+            margin-bottom: 10px;
+        }
+
+        .result-section p {
+            margin: 5px 0;
+            color: #2d3748;
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c00;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚑 CORNERSTONE TRANSPORT REQUEST</h1>
+            <p>Professional Medical Transport Coordination Portal</p>
+        </div>
+
+        <form id="transportForm">
+            <!-- PROVIDER INFORMATION -->
+            <div class="section-title">📋 PROVIDER INFORMATION</div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="agencyName">Agency Name</label>
+                    <input type="text" id="agencyName" value="Cornerstone" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="submittedBy" class="required">Submitted By</label>
+                    <input type="text" id="submittedBy" placeholder="Your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="requestDate">Date</label>
+                    <input type="date" id="requestDate">
+                </div>
+            </div>
+
+            <!-- PASSENGER INFORMATION -->
+            <div class="section-title">👤 PASSENGER INFORMATION</div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="passengerName" class="required">Passenger Name</label>
+                    <input type="text" id="passengerName" placeholder="Full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="passengerPhone" class="required">Phone Number</label>
+                    <input type="tel" id="passengerPhone" placeholder="(914) 555-1234" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientNumber">Client #</label>
+                    <input type="text" id="clientNumber" placeholder="C-12345">
+                </div>
+            </div>
+
+            <!-- RIDE DETAILS -->
+            <div class="section-title">🚗 RIDE DETAILS</div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="rideDate" class="required">Ride Date</label>
+                    <input type="date" id="rideDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="pickupTime" class="required">Pick-up Time</label>
+                    <input type="time" id="pickupTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="appointmentTime">Appointment Time</label>
+                    <input type="time" id="appointmentTime">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="required">Trip Type</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="tripType" value="One Way" checked>
+                            <span>One Way</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="tripType" value="Round Trip">
+                            <span>Round Trip</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="required">Frequency</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="frequency" value="One Time" checked>
+                            <span>One Time</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="frequency" value="Weekly">
+                            <span>Weekly</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row" id="returnTimeRow" style="display: none;">
+                <div class="form-group">
+                    <label for="returnTime">Return Pick-up Time</label>
+                    <input type="time" id="returnTime">
+                </div>
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" id="willCallCheckbox" style="width: auto; height: 20px;">
+                        <span style="font-weight: 600; color: #2c5282;">Will Call (Patient will call when ready)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Pick-up Address -->
+            <div class="section-title">📍 Pick-up Address</div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="pickupStreet" class="required">Pickup Street Address</label>
+                    <input type="text" id="pickupStreet" required placeholder="123 Main St">
+                </div>
+                <div class="form-group">
+                    <label for="pickupCity" class="required">City</label>
+                    <input type="text" id="pickupCity" required placeholder="New Rochelle">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="pickupCounty" class="required">County</label>
+                    <input type="text" id="pickupCounty" required placeholder="Westchester">
+                </div>
+                <div class="form-group">
+                    <label for="pickupZip" class="required">Zip Code</label>
+                    <input type="text" id="pickupZip" required pattern="\d{5}" placeholder="10801">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="pickupApt">Apt/Suite/Building</label>
+                    <input type="text" id="pickupApt" placeholder="Apt 2B">
+                </div>
+            </div>
+
+            <!-- Destination -->
+            <div class="section-title">🏥 Destination</div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="destinationName" class="required">Destination Name</label>
+                    <input type="text" id="destinationName" required placeholder="White Plains Hospital">
+                </div>
+                <div class="form-group">
+                    <label for="destinationApt">Suite/Floor/Department</label>
+                    <input type="text" id="destinationApt" placeholder="Suite 305">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="destinationStreet" class="required">Destination Street Address</label>
+                    <input type="text" id="destinationStreet" required placeholder="41 East Post Rd">
+                </div>
+                <div class="form-group">
+                    <label for="destinationCity" class="required">City</label>
+                    <input type="text" id="destinationCity" required placeholder="White Plains">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="destinationCounty" class="required">County</label>
+                    <input type="text" id="destinationCounty" required placeholder="Westchester">
+                </div>
+                <div class="form-group">
+                    <label for="destinationZip" class="required">Zip Code</label>
+                    <input type="text" id="destinationZip" required pattern="\d{5}" placeholder="10601">
+                </div>
+            </div>
+
+            <!-- Type of Transportation -->
+            <div class="section-title">🚑 Type of Transportation</div>
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label class="required">Service Type</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="serviceType" value="Wheelchair" required>
+                            <span>♿ Wheelchair</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="serviceType" value="Stretcher">
+                            <span>🛏️ Stretcher</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="serviceType" value="Ambulatory">
+                            <span>🚶 Ambulatory</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Special Needs -->
+            <div class="section-title">📝 Special Needs / Instructions</div>
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label for="specialInstructions">Any special requirements, medical equipment, mobility aids, or important information...</label>
+                    <textarea id="specialInstructions" rows="4" placeholder="e.g., Patient uses oxygen tank, needs assistance with stairs, has service animal, etc."></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">📋 SUBMIT REQUEST</button>
+        </form>
+
+        <!-- Loading Modal -->
+        <div id="loadingModal" class="modal">
+            <div class="modal-content">
+                <div class="spinner"></div>
+                <p id="loadingMessage">Processing request...</p>
+            </div>
+        </div>
+
+        <!-- Result Modal -->
+        <div id="resultModal" class="modal">
+            <div class="modal-content result-card">
+                <span class="close-btn" onclick="closeResultModal()">&times;</span>
+                <h2>✅ Request Submitted Successfully</h2>
+                <div id="resultContent"></div>
+                <p style="margin-top: 20px; color: #2c5282; font-weight: 600;">
+                    📧 Email notification sent to <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="79130c18171a14160b1e181d164d49391e14181015571a1614">[email&#160;protected]</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        const NETLIFY_FUNCTION = '/.netlify/functions/calculateDistance';
+
+        // Mostrar/ocultar return time
+        document.querySelectorAll('input[name="tripType"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const returnTimeRow = document.getElementById('returnTimeRow');
+                if (this.value === 'Round Trip') {
+                    returnTimeRow.style.display = 'grid';
+                } else {
+                    returnTimeRow.style.display = 'none';
+                }
+            });
+        });
+
+        // Will Call checkbox functionality
+        const willCallCheckbox = document.getElementById('willCallCheckbox');
+        const returnTimeInput = document.getElementById('returnTime');
+        
+        willCallCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                returnTimeInput.value = '';
+                returnTimeInput.disabled = true;
+                returnTimeInput.style.backgroundColor = '#f0f0f0';
+            } else {
+                returnTimeInput.disabled = false;
+                returnTimeInput.style.backgroundColor = 'white';
+            }
+        });
+
+        // Fecha por defecto (hoy)
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('requestDate').value = today;
+        document.getElementById('rideDate').value = today;
+
+        document.getElementById('transportForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            showLoading('Processing request...');
+            document.querySelector('.submit-btn').disabled = true;
+            
+            try {
+                // Capturar datos del formulario
+                const formData = {
+                    // Provider
+                    agencyName: document.getElementById('agencyName').value,
+                    submittedBy: document.getElementById('submittedBy').value,
+                    requestDate: document.getElementById('requestDate').value,
+                    
+                    // Passenger
+                    passengerName: document.getElementById('passengerName').value,
+                    passengerPhone: document.getElementById('passengerPhone').value,
+                    clientNumber: document.getElementById('clientNumber').value,
+                    
+                    // Ride Details
+                    rideDate: document.getElementById('rideDate').value,
+                    pickupTime: document.getElementById('pickupTime').value,
+                    appointmentTime: document.getElementById('appointmentTime').value,
+                    tripType: document.querySelector('input[name="tripType"]:checked').value,
+                    frequency: document.querySelector('input[name="frequency"]:checked').value,
+                    returnTime: document.getElementById('willCallCheckbox').checked ? 'WILL CALL' : document.getElementById('returnTime').value,
+                    
+                    // Pickup Address
+                    pickupStreet: document.getElementById('pickupStreet').value,
+                    pickupCity: document.getElementById('pickupCity').value,
+                    pickupCounty: document.getElementById('pickupCounty').value,
+                    pickupZip: document.getElementById('pickupZip').value,
+                    pickupApt: document.getElementById('pickupApt').value,
+                    
+                    // Destination
+                    destinationName: document.getElementById('destinationName').value,
+                    destinationApt: document.getElementById('destinationApt').value,
+                    destinationStreet: document.getElementById('destinationStreet').value,
+                    destinationCity: document.getElementById('destinationCity').value,
+                    destinationCounty: document.getElementById('destinationCounty').value,
+                    destinationZip: document.getElementById('destinationZip').value,
+                    
+                    // Service
+                    serviceType: document.querySelector('input[name="serviceType"]:checked').value,
+                    specialInstructions: document.getElementById('specialInstructions').value
+                };
+
+                // Construir direcciones completas
+                const pickupAddress = `${formData.pickupStreet}, ${formData.pickupCity}, ${formData.pickupCounty}, NY ${formData.pickupZip}`;
+                const destinationAddress = `${formData.destinationStreet}, ${formData.destinationCity}, ${formData.destinationCounty}, NY ${formData.destinationZip}`;
+
+                // Llamar a la función de Netlify para calcular distancia
+                showLoading('Calculating distance and time...');
+                let distance = 'N/A';
+                let duration = 'N/A';
+
+                try {
+                    const response = await fetch(NETLIFY_FUNCTION, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            origin: pickupAddress,
+                            destination: destinationAddress
+                        })
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        distance = result.distance || 'N/A';
+                        duration = result.duration || 'N/A';
+                    }
+                } catch (error) {
+                    console.error('Error calculating distance:', error);
+                }
+
+                // Enviar datos a Google Sheets
+                showLoading('Saving to Google Sheets...');
+                try {
+                    const sheetsData = {
+                        passengerName: formData.passengerName,
+                        passengerPhone: formData.passengerPhone,
+                        clientNumber: formData.clientNumber,
+                        rideDate: formData.rideDate,
+                        pickupTime: formData.pickupTime,
+                        appointmentTime: formData.appointmentTime,
+                        tripType: formData.tripType,
+                        frequency: formData.frequency,
+                        returnTime: formData.returnTime,
+                        serviceType: formData.serviceType,
+                        pickupAddress: pickupAddress,
+                        destinationAddress: destinationAddress,
+                        destinationName: formData.destinationName,
+                        distance: distance,
+                        duration: duration,
+                        specialInstructions: formData.specialInstructions,
+                        submittedBy: formData.submittedBy
+                    };
+                    
+                    const sheetsResponse = await fetch('https://script.google.com/macros/s/AKfycbz9YsU9fp88RQEN7J3hAZpewc5CAsaseIz4NRBDLxBbpqVJs-XN8yMGCa6VYVXuB2Pxjg/exec', {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(sheetsData)
+                    });
+                    console.log('Datos enviados a Google Sheets correctamente');
+                } catch (error) {
+                    console.error('Error al enviar a Google Sheets:', error);
+                }
+
+                // Mostrar resultado
+                hideLoading();
+                showResult(formData, pickupAddress, destinationAddress, distance, duration);
+
+            } catch (error) {
+                hideLoading();
+                alert('Error processing request. Please try again.');
+                console.error('Error:', error);
+                document.querySelector('.submit-btn').disabled = false;
+            }
+        });
 
         function showResult(data, pickup, destination, distance, duration) {
             const resultContent = `
@@ -721,7 +1348,22 @@
             document.getElementById('resultModal').style.display = 'none';
             document.getElementById('transportForm').reset();
             document.querySelector('.submit-btn').disabled = false;
-            const today = new Date().toISOString().split('T')[0];
+            const today = new Date().toISOString().split('T')[0);
+            document.getElementById('requestDate').value = today;
+            document.getElementById('rideDate').value = today;
+        }
+    </script>
+</body>
+</html>
+
+            document.getElementById('loadingModal').style.display = 'none';
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').style.display = 'none';
+            document.getElementById('transportForm').reset();
+            document.querySelector('.submit-btn').disabled = false;
+            const today = new Date().toISOString().split('T')[0);
             document.getElementById('requestDate').value = today;
             document.getElementById('rideDate').value = today;
         }
